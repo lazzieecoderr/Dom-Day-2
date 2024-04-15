@@ -1,0 +1,141 @@
+Content:-
+Without event using function
+Window methods:- Alert,prompt,confirm
+SetInterval vs SetTimeout
+Events :- https://event-listener-demo.netlify.app/
+Using prompt and event Listener example
+-------------------------------------------------------
+Without event using function:-
+
+<label for="email">Voter's Age</label>
+    <input type="email" name="email" id="email" placeholder="Enter your mail id">
+    <button type="submit" onclick="foo()">Submit</button>
+function foo(){
+   const res = document.getElementById("email").value; 
+   //console.log(res);
+   if(res=='test@gmail.com'){
+ alert("valid user")
+   }
+   else{
+    alert("invalid user")
+   }
+}
+
+-----------------------------------------------------------
+Event Listener:- 
+syntax:
+variablename.addEventListener("event",function)
+
+=>using create element  
+
+const button = document.createElement("button")
+button.setAttribute("type","button")
+button.id="btn"
+button.classList.add("btn","btn-danger")
+button.innerText="Click here to Wish"
+button.addEventListener("click",()=>{
+    alert("Good Morning Guys🙌")
+})
+document.body.append(button)
+
+=> using getElementById
+
+<div id="container"></div>
+    <button id="red" class="btn btn-danger ">Red</button>
+    <button id="green" class="btn btn-success ">Green</button>
+    <button id="blue" class="btn btn-info ">Blue</button>
+    <button id="reset" class="btn btn-dark ">Reset</button>
+
+const div = document.getElementById("container")
+const red = document.getElementById("red")
+const green = document.getElementById("green")
+const blue = document.getElementById("blue")
+const reset = document.getElementById("reset")
+
+red.addEventListener("click",()=>div.style.backgroundColor="red")
+green.addEventListener("click",()=>div.style.backgroundColor="green")
+blue.addEventListener("click",()=>div.style.backgroundColor="blue")
+reset.addEventListener("click",()=>div.style.backgroundColor="white")
+
+----------------------------------------------------------------------
+
+SetInterval vs SetTimeout:-
+
+SetTimeout:- 
+ milliseconds = > 1 sec = 1000millisecond
+ syntax:- 
+ SetTimeout(callback function,delay)
+ 
+ /*
+!Using Normal function
+function foo(){
+    window.alert("Hi Hello")
+}
+ setTimeout(foo,5000)
+ */
+/*
+!using annonyomus function
+setTimeout(function(){
+   alert("How Are you") 
+},10000)
+*/
+//! using arrow function
+setTimeout(()=>alert("Iam Fine"),3000);
+
+<button class="btn btn-info " onclick="starttimer()">Start</button>
+<button class="btn btn-danger " onclick="resettimer()">Reset</button>
+let id;
+function starttimer(){
+ id = setTimeout(()=>alert("Welcome"),5000)
+ console.log("started");
+}
+function resettimer(){
+    clearTimeout(id)
+    console.log("Ended");
+}
+--------------------------------------------
+SetInterval:- 
+
+<h2 id="timer">0</h2>
+    <button class="btn btn-danger " id="btn">Start</button>
+    <button class="btn btn-danger " id="btn1">Pause</button>
+    <button class="btn btn-danger " id="btn2">Stop</button>
+const timer = document.getElementById("timer");
+const btn = document.getElementById("btn");
+const btn1 = document.getElementById("btn1");
+const btn2 = document.getElementById("btn2");
+
+let count = 0;
+let id;
+btn.addEventListener("click", function () {
+  id = setInterval(() => {
+    count += 1;
+    timer.textContent = count;
+  }, 1000);
+});
+
+btn1.addEventListener("click", function () {
+  clearInterval(id);
+});
+
+btn2.addEventListener("click", function () {
+  clearInterval(id);
+  count = 0;
+  timer.textContent = count;
+});
+--------------------------------------------------
+Using prompt and event Listener example:-
+
+
+const button = document.createElement("button");
+const span = document.createElement("span");
+button.setAttribute("type", "button");
+button.id = "btn";
+button.classList.add("btn", "btn-success");
+button.innerText = "Click here";
+document.body.append(button, span);
+button.addEventListener("click",foo);
+function foo(){
+    const element = prompt("Enter Your Name");
+    span.innerHTML = `<b>${element}</b>`
+}
